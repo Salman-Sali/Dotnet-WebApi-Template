@@ -1,4 +1,5 @@
-﻿using Application.Common.ServiceInterfaces;
+﻿using Application.Common.Exceptions;
+using Application.Common.ServiceInterfaces;
 using Application.Configurations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
@@ -85,7 +86,7 @@ namespace Infrastructure.Services
             var token = GetJwtToken();
             if (string.IsNullOrEmpty(token))
             {
-                throw new WTException("Unauthorised.", System.Net.HttpStatusCode.Unauthorized);
+                throw new AppException("Unauthorised.", System.Net.HttpStatusCode.Unauthorized);
             }
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             JwtSecurityToken jwtToken = handler.ReadJwtToken(token);
