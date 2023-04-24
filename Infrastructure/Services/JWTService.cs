@@ -39,19 +39,12 @@ namespace Infrastructure.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public bool ValidateToken(DateTime? tokenInvalidatedDateTime)
+        public bool ValidateToken()
         {
             var token = GetJwtToken();
             string secretKey = _configurations.SecretKey;
             string issuer = _configurations.Issuer;
             string audience = _configurations.Audience;
-            if (tokenInvalidatedDateTime != null)
-            {
-                if (GetTokenIssuedDateTime() < tokenInvalidatedDateTime)
-                {
-                    return false;
-                }
-            }
 
             if (GetTokenExpiryDateTime() < DateTime.UtcNow)
             {

@@ -5,5 +5,6 @@ namespace Application.Common.ServiceInterfaces
     public interface IJWTService
     {
         public string? GenerateToken(List<Claim> claims);
+        public bool ValidateToken();
     }
 }
