@@ -57,7 +57,7 @@ namespace Configurations.Extentions
                 throw new ArgumentNullException("errorMessage cannot be null or empty.");
             }
 
-            return controller.NotFound(WebApiResponse<object>.Failed(errorMessage, HttpStatusCode.NotFound));
+            return controller.NotFound(ApiResponse<object>.Failed(errorMessage, HttpStatusCode.NotFound));
         }
 
         public static IActionResult InternalServerErrorResult(this ControllerBase controller, string errorMessage)
@@ -67,7 +67,7 @@ namespace Configurations.Extentions
                 throw new ArgumentNullException("errorMessage cannot be null or empty.");
             }
 
-            return controller.StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError), WebApiResponse<object>.Failed(errorMessage, HttpStatusCode.InternalServerError));
+            return controller.StatusCode(Convert.ToInt32(HttpStatusCode.InternalServerError), ApiResponse<object>.Failed(errorMessage, HttpStatusCode.InternalServerError));
         }
     }
 }

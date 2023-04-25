@@ -4,16 +4,21 @@ namespace Application.Configurations
 {
     public class AwsLambdaConfigurator
     {
-        public static T Bind<T>(T configurationModal, IConfiguration configuration)
+        public static void Bind<T>(T configurationModal, IConfiguration configuration)
         {
-            var modalName = nameof(T);
-            var type = typeof(T);
-            foreach (var property in type.GetProperties())
+            var isLocal = configuration.GetValue<bool?>("Local");
+            if (isLocal.HasValue && isLocal.Value)
             {
-                var value = configuration.GetValue(property.PropertyType, $"{modalName}_{property.Name}");
-                property.SetValue(configurationModal, value);
+                foreach (var property in typeof(T).GetProperties())
+                {
+                    var value = configuration.GetValue(property.PropertyType, $"{nameof(T)}_{property.Name}");
+                    property.SetValue(configurationModal, value);
+                }
             }
-            return configurationModal;
+            else
+            {
+                configuration.GetSection(nameof(T)).Bind(configurationModal);
+            }
         }
     }
 }

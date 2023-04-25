@@ -6,5 +6,6 @@ namespace Application.Common.ServiceInterfaces
     {
         public string? GenerateToken(List<Claim> claims);
         public bool ValidateToken();
+        public string GetClaimValue(string key);
     }
 }

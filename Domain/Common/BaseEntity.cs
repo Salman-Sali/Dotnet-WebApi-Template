@@ -1,11 +1,11 @@
 ﻿namespace Domain.Common
 {
-    public class BaseEntity<TId>
+    public class BaseEntity
     {
-        public TId Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int CreatedBy { get; set; }
-        public int UpdatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
+        public Guid UpdatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
     }
