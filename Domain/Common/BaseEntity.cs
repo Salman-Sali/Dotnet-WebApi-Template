@@ -2,8 +2,12 @@
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public BaseEntity()
+        {
+            Id = Guid.NewGuid();
+        }
 
+        public Guid Id { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid UpdatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
