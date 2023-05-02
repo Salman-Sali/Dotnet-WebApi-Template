@@ -1,4 +1,5 @@
-﻿using Infrastructure.Context.Interceptors;
+﻿using Domain.Entities;
+using Infrastructure.Context.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
@@ -29,5 +30,7 @@ namespace Infrastructure.Context
             optionsBuilder.LogTo(Console.WriteLine);
             optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }

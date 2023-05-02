@@ -5,6 +5,7 @@ using System.Reflection;
 using MediatR;
 using FluentValidation;
 using Application.Common.Behaviours;
+using Application.Configurations;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -12,6 +13,9 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            JWTConfigurations jWTConfigurations = new();
+            services.AddSingleton(AwsLambdaConfigurator.Bind(jWTConfigurations, configuration));
+
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
