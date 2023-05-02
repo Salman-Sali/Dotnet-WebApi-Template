@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Common.ServiceInterfaces;
+using Domain.Entities;
 using Infrastructure.Context.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace Infrastructure.Context
 {
-    public class MainDbContext : DbContext
+    public class MainDbContext : DbContext, IMainDbContext
     {
         private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
 

@@ -19,7 +19,7 @@ namespace Configurations.Authentication
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            if (jwtService.ValidateToken())
+            if (!jwtService.ValidateToken())
             {
                 throw new AppException("Unauthorised.", System.Net.HttpStatusCode.Unauthorized);
             }

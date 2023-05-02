@@ -19,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 options.UseNpgsql(configuration.GetValue<string>("ConnectionString"), builder => builder.MigrationsAssembly(typeof(MainDbContext).Assembly.FullName));
             });
+            services.AddScoped<IMainDbContext>(provider => provider.GetRequiredService<MainDbContext>());
 
             return services;
         }
